@@ -1,5 +1,4 @@
-'use client';
-
+'use client'
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -12,7 +11,6 @@ const BlogCard = ({ blog }) => {
   // Function to truncate text directly from blog.content
   const getTruncatedDescription = (content, wordLimit) => {
     if (content) {
-      // Split the content into words and truncate if it exceeds the word limit
       const words = content.split(' ');
       if (words.length > wordLimit) {
         return words.slice(0, wordLimit).join(' ') + '...';
@@ -23,14 +21,14 @@ const BlogCard = ({ blog }) => {
   };
 
   const handleClick = () => {
-    // Navigate using the slug but attach the ID as a query parameter
-    router.push(`/blogs/${blog.slug}?id=${blog.documentId}`);
+    // Navigate using the slug in the URL
+    router.push(`/blogs/${blog.slug}`);
   };
 
   return (
     <div
       className="border p-4 w-full sm:w-[32%]"
-      onClick={handleClick} // Direct reference
+      onClick={handleClick}
       style={{ cursor: 'pointer' }}
     >
       {blog?.media_content?.formats?.thumbnail?.url && (
@@ -45,7 +43,6 @@ const BlogCard = ({ blog }) => {
       <h2 className="font-bold sm:text-[30px] text-[20px]">{blog.title}</h2>
       {blog.content && (
         <div className="text-[14px] text-gray-600 mt-2">
-          {/* Render Markdown for truncated content */}
           <Markdown remarkPlugins={[remarkGfm]}>
             {getTruncatedDescription(blog.content, 15)}
           </Markdown>
@@ -57,10 +54,3 @@ const BlogCard = ({ blog }) => {
 };
 
 export default BlogCard;
-
-
-
-
-
-
-
